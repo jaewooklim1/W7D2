@@ -1,0 +1,409 @@
+  [1m[35m (652.5ms)[0m  [1m[35mCREATE DATABASE "Music_development" ENCODING = 'unicode'[0m
+  [1m[35m (561.9ms)[0m  [1m[35mCREATE DATABASE "Music_test" ENCODING = 'unicode'[0m
+  [1m[35m (24.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2205626353588408695)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210406151538)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210406151538"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-04-06 18:56:15.923236"], ["updated_at", "2021-04-06 18:56:15.923236"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2205626353588408695)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users" for 127.0.0.1 at 2021-04-06 14:58:24 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/" for 127.0.0.1 at 2021-04-06 14:58:34 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/railties-6.1.3.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/railties-6.1.3.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 22.5ms | Allocations: 221)
+Completed 200 OK in 28ms (Views: 23.8ms | ActiveRecord: 0.0ms | Allocations: 1722)
+
+
+Started GET "/session" for 127.0.0.1 at 2021-04-06 14:58:39 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/session"):
+  
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 14:58:46 -0400
+Processing by UsersController#new as HTML
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 4.7ms | Allocations: 5917)
+
+
+  
+ActionView::MissingTemplate (Missing template users/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "C:/Users/Jae/Documents/App Academy/Ruby Stuff/~Feb 22 Start/Week 7/Day 2/Music App/Music/app/views"
+  * "C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/actiontext-6.1.3.1/app/views"
+  * "C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/actionmailbox-6.1.3.1/app/views"
+):
+  
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/" for 127.0.0.1 at 2021-04-06 14:59:04 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/session/" for 127.0.0.1 at 2021-04-06 14:59:19 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/session"):
+  
+Started GET "/session/new" for 127.0.0.1 at 2021-04-06 14:59:21 -0400
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1109)
+
+
+  
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "C:/Users/Jae/Documents/App Academy/Ruby Stuff/~Feb 22 Start/Week 7/Day 2/Music App/Music/app/views"
+  * "C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/actiontext-6.1.3.1/app/views"
+  * "C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/actionmailbox-6.1.3.1/app/views"
+):
+  
+app/controllers/sessions_controller.rb:7:in `new'
+Started GET "/session/new" for 127.0.0.1 at 2021-04-06 15:01:32 -0400
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 11.4ms | Allocations: 4180)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 4244)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms | Allocations: 5243)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `auth_token' for #<ActionView::Base:0x000000000090d8>):
+    1: <h2>Login</h2>
+    2: 
+    3: <form action="<%= session_url %>" method="post">
+    4:     <%= auth_token %>
+    5:     <label>Username:
+    6:         <input type="text" name="user[username]">
+    7:     </label>
+  
+app/views/sessions/new.html.erb:4
+app/controllers/sessions_controller.rb:7:in `new'
+Started GET "/session/" for 127.0.0.1 at 2021-04-06 15:01:36 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/session"):
+  
+Started GET "/uesrs/" for 127.0.0.1 at 2021-04-06 15:01:38 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/uesrs"):
+  
+Started GET "/users/" for 127.0.0.1 at 2021-04-06 15:01:40 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users" for 127.0.0.1 at 2021-04-06 15:01:53 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:05:18 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (Duration: 10.0ms | Allocations: 4452)
+  Rendered users/new.html.erb within layouts/application (Duration: 19.1ms | Allocations: 4763)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 4827)
+Completed 500 Internal Server Error in 25ms (Allocations: 5634)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `auth_token' for #<ActionView::Base:0x0000000000a0c8>):
+     7: <% end %>
+     8: 
+     9: <form action="<%= action_url %>" method="POST">
+    10:     <%= auth_token %>
+    11:     <% if form_type == :edit %>
+    12:         <input type="hidden" name="_method" value="PATCH">
+    13:     <% end %>
+  
+app/views/users/_form.html.erb:10
+app/views/users/new.html.erb:3
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:06:58 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 310)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 1833)
+Completed 500 Internal Server Error in 13ms (Allocations: 2856)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Music App</title>
+            <%= csrf_meta_tags %>
+            <%= csp_meta_tag %>
+            <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        </head>
+        <body>
+    <%=begin%>
+    <a href="<%= new_song_url %>">Create a Song</a>
+    <%=end%>
+    
+    <% if logged_in? %>
+      <h2>Welcome, <%= current_user.username %>!</h2>
+      <form action='<%= session_url %>' method='post'>
+        <%= auth_token %>
+          <input name='_method' value='delete' type='hidden' />
+          <input type='submit' value='Logout' />
+      </form>
+    <% else %>
+      <a href="<%= new_session_url %>">Login</a>
+      <a href="<%= new_user_url %>">Sign up</a>
+    <% end %>
+    <% if flash[:errors] %>
+        <ul>
+            <% flash[:errors].each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    <% if flash[:success] %> <!-- for both flash && flash.now -->
+        <ul>
+            <% flash[:success].each do |msg| %> <!-- ordinary ruby obj/arr -->
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    <%= yield %> <!-- application.html.erb gets rendered with every view -->
+</body>
+
+</html>
+):
+1:    <!DOCTYPE html>
+2:        <html>
+3:            <head>
+4:                <title>Music App</title>
+5:                <%= csrf_meta_tags %>
+6:                <%= csp_meta_tag %>
+7:                <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+8:                <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+9:            </head>
+10:            <body>
+11:        <%=begin%>
+12:        <a href="<%= new_song_url %>">Create a Song</a>
+13:        <%=end%>
+14:        
+15:        <% if logged_in? %>
+16:          <h2>Welcome, <%= current_user.username %>!</h2>
+17:          <form action='<%= session_url %>' method='post'>
+18:            <%= auth_token %>
+19:              <input name='_method' value='delete' type='hidden' />
+20:              <input type='submit' value='Logout' />
+21:          </form>
+22:        <% else %>
+23:          <a href="<%= new_session_url %>">Login</a>
+24:          <a href="<%= new_user_url %>">Sign up</a>
+25:        <% end %>
+26:        <% if flash[:errors] %>
+27:            <ul>
+28:                <% flash[:errors].each do |error| %>
+29:                    <li><%= error %></li>
+30:                <% end %>
+31:            </ul>
+32:        <% end %>
+33:        <% if flash[:success] %> <!-- for both flash && flash.now -->
+34:            <ul>
+35:                <% flash[:success].each do |msg| %> <!-- ordinary ruby obj/arr -->
+36:                    <li><%= msg %></li>
+37:                <% end %>
+38:            </ul>
+39:        <% end %>
+40:        <%= yield %> <!-- application.html.erb gets rendered with every view -->
+41:    </body>
+42:    
+43:    </html>
+  
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:11: syntax error, unexpected ')'
+app/views/layouts/application.html.erb:13: syntax error, unexpected `end'
+app/views/layouts/application.html.erb:45: syntax error, unexpected `end', expecting ')'
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:09:53 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 294)
+  Rendered layout layouts/application.html.erb (Duration: 64.7ms | Allocations: 25868)
+Completed 500 Internal Server Error in 71ms (Allocations: 26895)
+
+
+  
+ActionView::Template::Error (The asset "application.js" is not present in the asset pipeline.
+):
+     5:             <%= csrf_meta_tags %>
+     6:             <%= csp_meta_tag %>
+     7:             <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     8:             <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     9:         </head>
+    10:         <body>
+    11:     <%begin%>
+  
+app/views/layouts/application.html.erb:8
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:10:07 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 294)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 7613)
+Completed 500 Internal Server Error in 26ms (Allocations: 8640)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_song_url' for #<ActionView::Base:0x0000000000ae88>
+Did you mean?  new_session_url):
+     8:         </head>
+     9:         <body>
+    10:     <%begin%>
+    11:     <a href="<%= new_song_url %>">Create a Song</a>
+    12:     <%end%>
+    13:     
+    14:         <% if logged_in? %>
+  
+app/views/layouts/application.html.erb:11
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:12:30 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 294)
+  Rendered layout layouts/application.html.erb (Duration: 19.5ms | Allocations: 7418)
+Completed 500 Internal Server Error in 27ms (Allocations: 8440)
+
+
+  
+ActionView::Template::Error (undefined method `logged_in?' for #<ActionView::Base:0x0000000000b2e8>
+Did you mean?  logger?):
+     8:         </head>
+     9:         <body>
+    10:  
+    11:         <% if logged_in? %>
+    12:         <h2>Welcome, <%= current_user.username %>!</h2>
+    13:         <form action='<%= session_url %>' method='post'>
+    14:             <%= auth_token %>
+  
+app/views/layouts/application.html.erb:11
+app/controllers/users_controller.rb:12:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:12:53 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.3ms | Allocations: 138)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 3102)
+Completed 200 OK in 45ms (Views: 5.3ms | ActiveRecord: 8.3ms | Allocations: 9497)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:13:11 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.3ms | Allocations: 118)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 3074)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 3471)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:13:13 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.2ms | Allocations: 118)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | Allocations: 3068)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.0ms | Allocations: 3461)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:13:14 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.2ms | Allocations: 118)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3068)
+Completed 200 OK in 5ms (Views: 5.1ms | ActiveRecord: 0.0ms | Allocations: 3461)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2021-04-06 15:13:14 -0400
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.8ms | Allocations: 4138)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 4202)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 5098)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `auth_token' for #<ActionView::Base:0x0000000000c7d8>):
+    1: <h2>Login</h2>
+    2: 
+    3: <form action="<%= session_url %>" method="post">
+    4:     <%= auth_token %>
+    5:     <label>Username:
+    6:         <input type="text" name="user[username]">
+    7:     </label>
+  
+app/views/sessions/new.html.erb:4
+app/controllers/sessions_controller.rb:7:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:13:17 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.3ms | Allocations: 124)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3083)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 3477)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2021-04-06 15:13:18 -0400
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 4054)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 4118)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 4459)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `auth_token' for #<ActionView::Base:0x0000000000cb48>):
+    1: <h2>Login</h2>
+    2: 
+    3: <form action="<%= session_url %>" method="post">
+    4:     <%= auth_token %>
+    5:     <label>Username:
+    6:         <input type="text" name="user[username]">
+    7:     </label>
+  
+app/views/sessions/new.html.erb:4
+app/controllers/sessions_controller.rb:7:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2021-04-06 15:13:20 -0400
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 0.2ms | Allocations: 118)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3073)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 3466)
+
+
